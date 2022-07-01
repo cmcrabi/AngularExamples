@@ -1,3 +1,5 @@
+import { rating } from "./rating";
+
 export interface IProduct{
     id: number;
     title: string;
@@ -5,5 +7,5 @@ export interface IProduct{
     description: string;
     category: string;
     image: string;
-    rating: string[];    
+    rating: rating;
 }

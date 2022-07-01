@@ -9,13 +9,15 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductDetailGuard } from './products/product-detail.guard';
+import { StarComponent } from './shared/star.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     ProductDetailComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    StarComponent
   ],
   imports: [
     BrowserModule,

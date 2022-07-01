@@ -11,9 +11,9 @@
                     <tr>
                         <th>Image</th>
                         <th>Product</th>
-                        <!--<th>Description</th>-->
                         <th>Category</th>
                         <th>Rating</th>
+                        <th>Star Rating</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,9 +28,9 @@
                                 {{product.title}}
                             </a>
                         </td>
-                        <!--<td>{{product.description}}</td>-->
                         <td>{{product.category}}</td>
-                        <td>{{product.rating}}</td>
+                        <td>{{product.rating.rate}}</td>
+                        <td><app-star [rating]='product.rating.rate'></app-star></td>
                     </tr>
                 </tbody>
             </table>
