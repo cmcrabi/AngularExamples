@@ -8,12 +8,12 @@ import { IProduct } from "./IProduct";
   })
 
 export class ProductDetailService {
-    private productDetailUrl = "https://fakestoreapi.com/products/"
+    private productDetailUrl = "https://fakestoreapi.com/products"
 
     constructor(private http:HttpClient) {}
 
     getProduct(id:string):Observable<any>{
-        var response = this.http.get<IProduct>(this.productDetailUrl + id).pipe(
+        var response = this.http.get<IProduct>(`${this.productDetailUrl}/${id}` ).pipe(
             tap(data => console.log('Data: ', JSON.stringify(data))),
             catchError(this.HandleError)
         );
