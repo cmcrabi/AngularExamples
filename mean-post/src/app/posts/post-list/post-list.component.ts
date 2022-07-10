@@ -1,5 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { IPost } from "../IPost";
+import { PostService } from "../posts.service";
 
 @Component({
     selector: 'app-post-list',
@@ -7,11 +9,22 @@ import { IPost } from "../IPost";
     styleUrls: ['./post-list.component.css']
 })
 
-export class PostListComponent{
-// posts = [
-//     {title: 'First post', content: 'My first post in angular'},
-//     {title: 'Second post', content: 'My second post in angular'},
-//     {title: 'Third post', content: 'My third post in angular'}
-// ];
-@Input() posts: IPost[] = [];
+export class PostListComponent implements OnInit{
+    private _postsService;
+    private postsSub : Subscription | undefined;
+
+    constructor(postsService : PostService){
+        this._postsService = postsService;
+    }
+
+    @Input() posts: IPost[] = [];
+
+    ngOnInit(): void
+    {
+        this._postsService.getPosts();
+        this.postsSub = this._postsService.getPostsUpdatedListener()
+        .subscribe((posts: IPost[]) => {
+            this.posts = posts;
+        });
+    }
 }
