@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { response } from 'express';
 import { map, Observable, Subject } from 'rxjs';
 import { IPost } from './IPost';
 
@@ -45,6 +46,19 @@ export class PostService {
             this.posts.push(post);
             this.postsUpdated.next([...this.posts]);
         });
+    }
+
+    getPost(id: string)
+    {
+        return {...this.posts.find(p => p.id === id)};
+    }
+
+    updatePost(id: string, title: string, content: string)
+    {
+        const post: IPost = {id: id, title: title, content: content};
+        this.http.put('http://localhost:3000/api/posts/' + id, post)
+        .subscribe(response => console.log(response));
+
     }
 
     deletePost(postId: string){
